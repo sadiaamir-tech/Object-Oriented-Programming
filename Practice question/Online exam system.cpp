@@ -39,7 +39,7 @@ int main() {
     cout << "Marks: " << s.getMarks() << endl;
     cout << "Grade: " << s.getGrade() << endl;
 
-s.setMarks(92);
+    s.setMarks(92);
     cout << "Marks: " << s.getMarks() << endl;
     cout << "Grade: " << s.getGrade() << endl;
     return 0;
