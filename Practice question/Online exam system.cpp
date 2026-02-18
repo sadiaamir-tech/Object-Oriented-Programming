@@ -17,7 +17,6 @@ public:
     void setMarks(int m) {
         if (m < 0 || m > 100) {
             cout << "Invalid marks!" << endl;
-            return;
         }
         marks = m;
         calculateGrade();
