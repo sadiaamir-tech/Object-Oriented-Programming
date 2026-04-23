@@ -1,104 +1,75 @@
 #include <iostream>
-#include <string>
-
 using namespace std;
-
 class Character {
 public:
     virtual void attack() {
-        cout << "Character does a basic attack!" << endl;
+        cout << "Character attacks!" << endl;
     }
-    
     virtual void power() {
-        cout << "Character uses a basic power!" << endl;
+        cout << "Character uses power!" << endl;
     }
-    
-    virtual ~Character() {} 
 };
-
 class Warrior : public Character {
 public:
     void attack() override {
-        cout << "Warrior swings a heavy broadsword!" << endl;
+        cout << "Warrior slashes with sword!" << endl;
     }
-    
     void power() override {
-        cout << "Warrior uses Berserker Rage!" << endl;
+        cout << "Warrior uses shield power!" << endl;
     }
 };
-
 class Mage : public Character {
 public:
     void attack() override {
-        cout << "Mage shoots a magic missile!" << endl;
+        cout << "Mage casts fireball!" << endl;
     }
-    
     void power() override {
-        cout << "Mage casts a destructive Meteor Strike!" << endl;
+        cout << "Mage uses magic spell!" << endl;
     }
 };
-
 class DamageCalculator {
 public:
-    int calculateDamage(int baseDamage) {
-        return baseDamage;
+    int calculateDamage(int base) {
+        return base * 10; 
     }
-    
-    int calculateDamage(int baseDamage, int multiplier) {
-        return baseDamage * multiplier;
+    int calculateDamage(int base, int multiplier) {
+        return base * multiplier;
     }
 };
-
 class Position {
 public:
     int x, y;
-    
-    Position(int x = 0, int y = 0) : x(x), y(y) {}
-    
-    Position operator+(const Position& other) const {
-        Position temp;
-        temp.x = this->x + other.x;
-        temp.y = this->y + other.y;
-        return temp;
+    Position(int x=0, int y=0) : x(x), y(y) {}
+
+    Position operator+(const Position& other) {
+        return Position(x + other.x, y + other.y);
     }
-    
-    void display() const {
+
+    void display() {
         cout << "(" << x << ", " << y << ")" << endl;
     }
 };
-
 int main() {
-    Character* charPtr; 
-    
-    Warrior myWarrior;
-    Mage myMage;
-    
-    charPtr = &myWarrior;
-    charPtr->attack();
-    charPtr->power();
-    
-    cout << endl;
-    
-    charPtr = &myMage;
-    charPtr->attack();
-    charPtr->power();
-    
-    DamageCalculator calc;
-    
-    int basicDmg = calc.calculateDamage(20);         
-    int specialDmg = calc.calculateDamage(20, 3);    
-    
-    cout << "\nBasic Attack Damage: " << basicDmg << endl;
-    cout << "Special Attack Damage: " << specialDmg << endl;
-    
-    Position p1(5, 10);
-    Position p2(3, 7);
-    
-    Position combinedPosition = p1 + p2; 
-    
-    cout << "\nPosition 1: "; p1.display();
-    cout << "Position 2: "; p2.display();
-    cout << "Combined Position: "; combinedPosition.display();
-    
+    Warrior w;
+    Mage m;
+
+    Character* c1 = &w;
+    Character* c2 = &m;
+
+    c1->attack();
+    c1->power();
+
+    c2->attack();
+    c2->power();
+
+    DamageCalculator dc;
+    cout << "Basic Damage: " << dc.calculateDamage(5) << endl;
+    cout << "Special Damage: " << dc.calculateDamage(5, 3) << endl;
+
+    Position p1(2, 3), p2(4, 5);
+    Position p3 = p1 + p2;
+    cout << "Combined Position: ";
+    p3.display();
     return 0;
 }
+
