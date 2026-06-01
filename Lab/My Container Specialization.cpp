@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 template <typename T>
-class mycontainer {
+class mycontainer{
 private:
     T a;
 public:
